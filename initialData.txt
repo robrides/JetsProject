@@ -1,0 +1,5 @@
+model; speed; range; price; 
+B-2 Spirit;
+B-1 Lancer;
+F-22 Raptor;
+F-15 Eagle; 
