@@ -2,8 +2,6 @@ package com.skilldistillery.jets.models;
 
 public class JetImpl extends Jet {
 
-
-
 	public JetImpl() {
 		super();
 	}
@@ -18,7 +16,7 @@ public class JetImpl extends Jet {
 				+ getRange() + ", Flight Time: ");
 		System.out.printf("%.2f", ((getRange() / getSpeed())));
 		System.out.print(" hours.");
-		System.out.println("\nCustom bird airborne.\n");		
+		System.out.println("\nCustom bird airborne.\n");
 	}
 
 }

@@ -3,16 +3,16 @@ package com.skilldistillery.jets.models;
 public class TankerAircraft extends Jet implements TransportAndTankerLoad {
 
 	boolean loaded;
-	
+
 	public TankerAircraft() {
 		super();
 	}
-	
+
 	public TankerAircraft(String type, String model, double speed, int range, long price) {
-		super(type,model,speed,range,price);
+		super(type, model, speed, range, price);
 
 	}
-	
+
 	public void fly() {
 		System.out.print("Type: " + getType() + ", Model: " + getModel() + "\nSpeed: " + getSpeed() + ", Range: "
 				+ getRange() + ", Flight Time: ");
@@ -37,11 +37,11 @@ public class TankerAircraft extends Jet implements TransportAndTankerLoad {
 		loaded = true;
 		fullOfFuel();
 	}
-	
+
 	private void startFilling() {
 		System.out.println("Tanker " + getModel() + ", loading gas.");
 	}
-	
+
 	private void fullOfFuel() {
 		System.out.println("Tanker " + getModel() + ", ready to pump gas.");
 	}

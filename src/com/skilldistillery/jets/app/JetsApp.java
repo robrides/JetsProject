@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -99,10 +100,16 @@ public class JetsApp {
 				+ "4) View jet with longest range\n" + "5) Load all Transport and Tanker Aircraft\n" + "6) Dogfight!\n"
 				+ "7) Add a jet to Fleet\n" + "8) Remove a jet from Fleet\n" + "9) Quit");
 		System.out.println("*********************************\n");
-		System.out.print("Enter choice >> ");
-		menuChoice = kb.nextInt();
-		System.out.println();
 
+		System.out.print("Enter choice >> ");
+
+		try {
+			menuChoice = kb.nextInt();
+		} catch (InputMismatchException e) {
+			System.out.println("Invalid input. Try again.");
+			kb.nextLine();
+		}
+		System.out.println();
 	}
 
 	private void printWelcome() {
@@ -130,20 +137,27 @@ public class JetsApp {
 
 	public void addCustomJet() {
 		String type = "";
-		String model;
-		double speed;
-		int range;
-		long price;
-		int choice;
+		String model = "";
+		double speed = 0.0;
+		int range = 0;
+		long price = 0;
+		int choice = 0;
 
-		System.out.println("What type of jet would you like to add? Select the number of your choice below.");
-		System.out.println("*******************");
-		System.out.println("1. Transport");
-		System.out.println("2. Tanker");
-		System.out.println("3. Combat");
-		System.out.println("4. Exit This Menu");
-		System.out.println("*******************");
-		choice = kb.nextInt();
+		do {
+			System.out.println("What type of jet would you like to add? Select the number of your choice below.");
+			System.out.println("*******************");
+			System.out.println("1. Transport");
+			System.out.println("2. Tanker");
+			System.out.println("3. Combat");
+			System.out.println("*******************");
+
+			try {
+				choice = kb.nextInt();
+			} catch (Exception e1) {
+				System.out.println("\nInvalid input. Please try again\n");
+				kb.nextLine();
+			}
+		} while (choice != 1 && choice != 2 && choice != 3);
 
 		switch (choice) {
 		case 1:
@@ -155,18 +169,28 @@ public class JetsApp {
 		case 3:
 			type = "Combat";
 			break;
-		case 4:
-			break;
 		}
 
-		System.out.println("Enter the jet model >> ");
-		model = kb.next();
-		System.out.println("Enter the jet's speed >> ");
-		speed = kb.nextDouble();
-		System.out.println("Enter the jet's range >> ");
-		range = kb.nextInt();
-		System.out.println("Enter the jet's price >> ");
-		price = kb.nextLong();
+		do {
+			System.out.println("Enter the jet model >> ");
+			try {
+				model = kb.next();
+				System.out.println("Enter the jet's speed >> ");
+				speed = kb.nextDouble();
+				System.out.println("Enter the jet's range >> ");
+				range = kb.nextInt();
+				System.out.println("Enter the jet's price >> ");
+				range = kb.nextInt();
+
+			} catch (Exception e) {
+				System.out.println("\nInvalid input. Please try again.\n");
+				kb.nextLine();
+				type = "";
+				model = "";
+				speed = 0.0;
+				range = 0;
+			}
+		} while (model.equals("") && speed == 0.0 && range == 0 && price == 0.0);
 
 		System.out.println("The following jet was added.");
 		System.out.println(airfield.addCustomJet(type, model, speed, range, price));

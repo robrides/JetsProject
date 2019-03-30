@@ -3,7 +3,7 @@ package com.skilldistillery.jets.models;
 public class TransportAircraft extends Jet implements TransportAndTankerLoad {
 
 	boolean loaded;
-	
+
 	public TransportAircraft() {
 		super();
 	}
@@ -33,7 +33,7 @@ public class TransportAircraft extends Jet implements TransportAndTankerLoad {
 	@Override
 	public void loading() {
 		loaded = false;
-		this.startLoading();		
+		this.startLoading();
 	}
 
 	@Override
@@ -41,13 +41,13 @@ public class TransportAircraft extends Jet implements TransportAndTankerLoad {
 		loaded = true;
 		this.finishedLoading();
 	}
-	
+
 	private void startLoading() {
 		System.out.println("Transporter " + getModel() + ", loading boots, bullets, and beans.");
 	}
-	
+
 	private void finishedLoading() {
 		System.out.println("Transporter " + getModel() + ", ready to deliver boots, bullets, and beans.");
 	}
-	
+
 }
