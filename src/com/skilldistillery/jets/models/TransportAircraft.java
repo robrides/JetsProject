@@ -21,10 +21,6 @@ public class TransportAircraft extends Jet implements TransportAndTankerLoad {
 		System.out.println("\nAirborne and bringing the boots, beans, and bullets!\n");
 	}
 
-	public void loadTransportJets() {
-
-	}
-
 	@Override
 	public boolean loaded() {
 		return loaded;

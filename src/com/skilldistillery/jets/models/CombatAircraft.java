@@ -1,8 +1,8 @@
 package com.skilldistillery.jets.models;
 
 public class CombatAircraft extends Jet implements CombatReady {
-	boolean msnStatus;
-	boolean dogFightStatus;
+	private boolean msnStatus;
+	private boolean dogFightStatus;
 
 	public CombatAircraft() {
 		super();

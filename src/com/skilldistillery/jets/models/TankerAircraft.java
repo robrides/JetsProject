@@ -2,7 +2,7 @@ package com.skilldistillery.jets.models;
 
 public class TankerAircraft extends Jet implements TransportAndTankerLoad {
 
-	boolean loaded;
+	private boolean loaded;
 
 	public TankerAircraft() {
 		super();

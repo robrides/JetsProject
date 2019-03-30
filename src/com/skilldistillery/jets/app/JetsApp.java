@@ -157,7 +157,7 @@ public class JetsApp {
 		System.out.println("Removed this jet:\n" + removedJet + "\n");
 	}
 
-	public void addCustomJet() {
+	private void addCustomJet() {
 		String type = "";
 		String model = "";
 		double speed = 0.0;
@@ -219,7 +219,7 @@ public class JetsApp {
 
 	}
 
-	public List<Jet> populateAirfieldFromFile(String fileName) {
+	private List<Jet> populateAirfieldFromFile(String fileName) {
 
 		System.out.println("Populating airfield from file.");
 
