@@ -16,8 +16,22 @@ public class Airfield {
 		}
 	
 		public void listFleet() {
+
+			System.out.println("The fleet: \n");
 			
-			System.out.println(jets);
-			
+			for (Jet jet : jets) {
+				System.out.print("Aircraft Type: " + jet.getType());
+				System.out.print(", Model: " + jet.getModel());
+				System.out.print(", Speed: " + jet.getSpeed() + " MPH");
+				System.out.print(", Range: " + jet.getRange() + " miles");
+				System.out.println(", Price: $" + jet.getPrice());
+			}			
 		}
+
+		@Override
+		public String toString() {
+			return "Airfield [jets=" + jets + "]";
+		}
+		
+		
 }

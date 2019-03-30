@@ -12,6 +12,7 @@ import com.skilldistillery.jets.models.Airfield;
 import com.skilldistillery.jets.models.Combat;
 import com.skilldistillery.jets.models.Jet;
 import com.skilldistillery.jets.models.Tanker;
+import com.skilldistillery.jets.models.Transport;
 
 public class JetsApp {
 
@@ -25,16 +26,27 @@ public class JetsApp {
 		jetsApp.run();
 	}
 
+	// Main application functionality execution
 	private void run() {
 
+		printWelcome();
+		// this.airfield = this.kb.nextLine();
+		
+		// Read in aircraft from file and populate List
 		List<Jet> jetsList = populateAirfieldFromFile("initialData.txt");
+		
+		// Instantiate a new Airfield instance and fill with fleet of jets
+		airfield = new Airfield(jetsList);
+		
+		// Print a list of the aircraft at the Airfield
+		airfield.listFleet();
+	}
+	
+	private void printWelcome() {
 		System.out.println("********************************");
 		System.out.println("* Welcome to USAF Jets Program *");
 		System.out.println("********************************");
 		System.out.println();
-		// this.airfield = this.kb.nextLine();
-		airfield = new Airfield(jetsList);
-		airfield.listFleet();
 	}
 
 	public List<Jet> populateAirfieldFromFile(String fileName) {
@@ -62,12 +74,10 @@ public class JetsApp {
 					Jet newCombatJet = new Combat(type, model, speed, range, price);
 					jetsList.add(newCombatJet);
 				} else if (type.equals("Tanker")) {
-
 					Jet newTankerJet = new Tanker(type, model, speed, range, price);
 					jetsList.add(newTankerJet);
 				} else if (type.equals("Transport")) {
-
-					Jet newTransportJet = new Tanker(type, model, speed, range, price);
+					Jet newTransportJet = new Transport(type, model, speed, range, price);
 					jetsList.add(newTransportJet);
 				}
 
