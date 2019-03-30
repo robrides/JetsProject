@@ -1,28 +1,12 @@
 package com.skilldistillery.jets.models;
 
-public abstract class Jet implements MaintenanceStatus {
+public abstract class Jet {
 
 	private String type;
 	private String model;
 	private double speed;
 	private int range;
 	private long price;
-	private boolean msnReady;
-
-	@Override
-	public boolean msnReady() {
-		return msnReady;
-	}
-
-	@Override
-	public void placeInMx() {
-		msnReady = false;
-	}
-
-	@Override
-	public void setOperational() {
-		msnReady = true;
-	}
 
 	public Jet() {
 		super();
@@ -131,7 +115,7 @@ public abstract class Jet implements MaintenanceStatus {
 
 	@Override
 	public String toString() {
-		return "Jet: Type= " + type + ", Model= " + model + ", Speed= " + speed + ", Price= " + price + ", Range= "
+		return "Type: " + type + ", Model: " + model + ", Speed: " + speed + "\n\tPrice= " + price + ", Range= "
 				+ range;
 	}
 

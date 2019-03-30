@@ -14,7 +14,7 @@ public class CombatAircraft extends Jet implements CombatReady {
 	}
 
 	public void fly() {
-		System.out.print("Type: " + getType() + ", Model: " + getModel() + ", Speed: " + getSpeed() + ", Range: "
+		System.out.print("Type: " + getType() + ", Model: " + getModel() + "\nSpeed: " + getSpeed() + ", Range: "
 				+ getRange() + ", Flight Time: ");
 		System.out.printf("%.2f", ((getRange() / getSpeed())));
 		System.out.print(" hours.");
@@ -38,11 +38,12 @@ public class CombatAircraft extends Jet implements CombatReady {
 	}
 
 	private void loadingMunitions() {
-		System.out.println("Combat aircraft " + getModel() + ", loading missiles.");
+		System.out.println(this.getClass().getSimpleName() + ": " + getModel() + ", loading missiles.");
+
 	}
 
 	private void munitionsLoaded() {
-		System.out.println("Combat aircraft " + getModel() + ", ready to fight!");
+		System.out.println(this.getClass().getSimpleName() + ": " + getModel() + "Missiles loaded.");
 	}
 
 	@Override
@@ -61,7 +62,7 @@ public class CombatAircraft extends Jet implements CombatReady {
 		dogFightStatus = false;
 		enemyEliminated();
 	}
-	
+
 	private void startAttack() {
 		System.out.println(getModel() + " reports, enemy in sights. Missles deployed.");
 	}

@@ -68,6 +68,8 @@ public class JetsApp {
 		case 5:
 			airfield.loadTransportAircraft();
 			airfield.finishLoadingTransportAircraft();
+			airfield.fillTankerAircraft();
+			airfield.finishFillingTankerAircraft();
 			break;
 		case 6:
 			airfield.loadCombatAircraft();
@@ -80,7 +82,6 @@ public class JetsApp {
 			break;
 		case 8:
 			removeJet();
-
 		case 9:
 			break;
 		default:
@@ -92,10 +93,10 @@ public class JetsApp {
 
 	private void printMenuGetChoice() {
 
-		System.out.println("Please select from the following menu by entering the number of your choice.\n");
+		System.out.println("\nPlease select from the following menu by\nentering the number of your choice.");
 		System.out.println("*********************************");
 		System.out.println("1) List fleet\n" + "2) Fly all jets\n" + "3) View fastest jet\n"
-				+ "4) View jet with longest range\n" + "5) Load all Transport Aircraft\n" + "6) Dogfight!\n"
+				+ "4) View jet with longest range\n" + "5) Load all Transport and Tanker Aircraft\n" + "6) Dogfight!\n"
 				+ "7) Add a jet to Fleet\n" + "8) Remove a jet from Fleet\n" + "9) Quit");
 		System.out.println("*********************************\n");
 		System.out.print("Enter choice >> ");
@@ -113,29 +114,51 @@ public class JetsApp {
 
 	private void removeJet() {
 		int jetToRemove;
-		
+
 		airfield.listFleet();
-		
+
 		System.out.println("Please select the number of the jet you would like to remove >> ");
-		
+
 		jetToRemove = kb.nextInt();
-		
+
 		Jet removedJet = new JetImpl();
-		
+
 		removedJet = airfield.removeJet(jetToRemove);
-		
-		System.out.println("Removed this jet:\n" + removedJet +"\n");
+
+		System.out.println("Removed this jet:\n" + removedJet + "\n");
 	}
 
 	public void addCustomJet() {
-		String type;
+		String type = "";
 		String model;
 		double speed;
 		int range;
 		long price;
+		int choice;
 
-		System.out.println("Enter the jet type >> ");
-		type = kb.next();
+		System.out.println("What type of jet would you like to add? Select the number of your choice below.");
+		System.out.println("*******************");
+		System.out.println("1. Transport");
+		System.out.println("2. Tanker");
+		System.out.println("3. Combat");
+		System.out.println("4. Exit This Menu");
+		System.out.println("*******************");
+		choice = kb.nextInt();
+
+		switch (choice) {
+		case 1:
+			type = "Transport";
+			break;
+		case 2:
+			type = "Tanker";
+			break;
+		case 3:
+			type = "Combat";
+			break;
+		case 4:
+			break;
+		}
+
 		System.out.println("Enter the jet model >> ");
 		model = kb.next();
 		System.out.println("Enter the jet's speed >> ");
@@ -145,12 +168,14 @@ public class JetsApp {
 		System.out.println("Enter the jet's price >> ");
 		price = kb.nextLong();
 
-		airfield.addCustomJet(type, model, speed, range, price);
+		System.out.println("The following jet was added.");
+		System.out.println(airfield.addCustomJet(type, model, speed, range, price));
+
 	}
 
 	public List<Jet> populateAirfieldFromFile(String fileName) {
 
-		System.out.println("Populating airfield from file.\n");
+		System.out.println("Populating airfield from file.");
 
 		// Create list of jets
 		List<Jet> jetsList = new ArrayList<>();
