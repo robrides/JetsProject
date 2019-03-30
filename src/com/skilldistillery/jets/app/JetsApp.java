@@ -26,6 +26,7 @@ public class JetsApp {
 		JetsApp jetsApp = new JetsApp();
 		jetsApp.kb = new Scanner(System.in);
 		jetsApp.run();
+		jetsApp.kb.close();
 	}
 
 	// Main application functionality execution
