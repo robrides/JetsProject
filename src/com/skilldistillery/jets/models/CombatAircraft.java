@@ -8,8 +8,8 @@ public class CombatAircraft extends Jet implements CombatReady {
 		super();
 	}
 
-	public CombatAircraft(String type, String model, double speed, int range, long price) {
-		super(type, model, speed, range, price);
+	public CombatAircraft(String type, String model, double speed, int range, long price, String pilot) {
+		super(type, model, speed, range, price, pilot);
 
 	}
 
@@ -43,7 +43,15 @@ public class CombatAircraft extends Jet implements CombatReady {
 	}
 
 	private void munitionsLoaded() {
-		System.out.println(this.getClass().getSimpleName() + ": " + getModel() + "Missiles loaded.");
+		System.out.println(this.getClass().getSimpleName() + ": " + getModel() + " Missiles loaded.");
+	}
+	
+	private void startAttack() {
+		System.out.println(getModel() + " reports, enemy in sights. Missles deployed.");
+	}
+	
+	private void enemyEliminated() {
+		System.out.println(getModel() + " reports, threat neutralized!");
 	}
 
 	@Override
@@ -63,12 +71,29 @@ public class CombatAircraft extends Jet implements CombatReady {
 		enemyEliminated();
 	}
 
-	private void startAttack() {
-		System.out.println(getModel() + " reports, enemy in sights. Missles deployed.");
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result + (dogFightStatus ? 1231 : 1237);
+		result = prime * result + (msnStatus ? 1231 : 1237);
+		return result;
 	}
 
-	private void enemyEliminated() {
-		System.out.println(getModel() + " reports, threat neutralized!");
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		CombatAircraft other = (CombatAircraft) obj;
+		if (dogFightStatus != other.dogFightStatus)
+			return false;
+		if (msnStatus != other.msnStatus)
+			return false;
+		return true;
 	}
-
+	
 }

@@ -1,0 +1,21 @@
+Goose;No
+Iceman;No
+Charlie;No
+Maverick;No
+Viper;No
+Merlin;No
+Cougar;No
+Goose Jr.;No
+Iceman Jr.;No
+Charlie Jr.;No
+Maverick Jr.;No
+Viper Jr.;No
+Merlin Jr.;No
+Cougar Jr.;No
+Goose III;No
+Iceman III;No
+Charlie III;No
+Maverick III;No
+Viper III;No
+Merlin III;No
+Cougar III;No

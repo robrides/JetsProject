@@ -1,13 +1,13 @@
-Combat;B-2 Spirit;630;6900;737000000;pilot
-Combat;B-1 Lancer;830;5900;400000000;pilot
-Combat;F-22 Raptor;1500;1840;175000000;pilot
-Combat;F-15 Eagle;1200;1700;120000000;pilot
-Combat;F-35 Lightning II;1650;1950;200000000;pilot
-Combat;F-16 Fighting Falcon;1320;2280;25000000;pilot
-Combat;A-10 Thunderbolt II;439;2580;45000000;pilot
-Transport;C-5 Galaxy;531;5500;200000000;pilot
-Transport;Boeing C-17;600;2785;240000000;pilot
-Transport;C-130 Hercules;366;1270;30000000;pilot
-Tanker;Boeing KC-135;530;1500;60000000;pilot
-Tanker;KC-10 Extender;619;4400;120000000;pilot
-Tanker;KC-46 Pegasus;570;6385;150000000;pilot
+Combat;B-2 Spirit;630;6900;737000000;no pilot
+Combat;B-1 Lancer;830;5900;400000000;no pilot
+Combat;F-22 Raptor;1500;1840;175000000;no pilot
+Combat;F-15 Eagle;1200;1700;120000000;no pilot
+Combat;F-35 Lightning II;1650;1950;200000000;no pilot
+Combat;F-16 Fighting Falcon;1320;2280;25000000;no pilot
+Combat;A-10 Thunderbolt II;439;2580;45000000;no pilot
+Transport;C-5 Galaxy;531;5500;200000000;no pilot
+Transport;Boeing C-17;600;2785;240000000;no pilot
+Transport;C-130 Hercules;366;1270;30000000;no pilot
+Tanker;Boeing KC-135;530;1500;60000000;no pilot
+Tanker;KC-10 Extender;619;4400;120000000;no pilot
+Tanker;KC-46 Pegasus;570;6385;150000000;no pilot

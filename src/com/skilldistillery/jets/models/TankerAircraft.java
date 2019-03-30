@@ -8,11 +8,11 @@ public class TankerAircraft extends Jet implements TransportAndTankerLoad {
 		super();
 	}
 
-	public TankerAircraft(String type, String model, double speed, int range, long price) {
-		super(type, model, speed, range, price);
+	public TankerAircraft(String type, String model, double speed, int range, long price, String pilot) {
+		super(type, model, speed, range, price, pilot);
 
 	}
-
+	
 	public void fly() {
 		System.out.print("Type: " + getType() + ", Model: " + getModel() + "\nSpeed: " + getSpeed() + ", Range: "
 				+ getRange() + ", Flight Time: ");
@@ -45,4 +45,29 @@ public class TankerAircraft extends Jet implements TransportAndTankerLoad {
 	private void fullOfFuel() {
 		System.out.println("Tanker " + getModel() + ", ready to pump gas.");
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result + (loaded ? 1231 : 1237);
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		TankerAircraft other = (TankerAircraft) obj;
+		if (loaded != other.loaded)
+			return false;
+		return true;
+	}
+	
+	
+	
 }

@@ -8,8 +8,8 @@ public class TransportAircraft extends Jet implements TransportAndTankerLoad {
 		super();
 	}
 
-	public TransportAircraft(String type, String model, double speed, int range, long price) {
-		super(type, model, speed, range, price);
+	public TransportAircraft(String type, String model, double speed, int range, long price, String pilot) {
+		super(type, model, speed, range, price, pilot);
 
 	}
 

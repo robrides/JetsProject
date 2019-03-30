@@ -13,6 +13,8 @@ import com.skilldistillery.jets.models.Airfield;
 import com.skilldistillery.jets.models.CombatAircraft;
 import com.skilldistillery.jets.models.Jet;
 import com.skilldistillery.jets.models.JetImpl;
+import com.skilldistillery.jets.models.Pilot;
+import com.skilldistillery.jets.models.PilotImpl;
 import com.skilldistillery.jets.models.TankerAircraft;
 import com.skilldistillery.jets.models.TransportAircraft;
 
@@ -23,7 +25,7 @@ public class JetsApp {
 	private Airfield airfield;
 	private int menuChoice;
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws FileNotFoundException, IOException {
 		JetsApp jetsApp = new JetsApp();
 		jetsApp.kb = new Scanner(System.in);
 		jetsApp.run();
@@ -31,62 +33,83 @@ public class JetsApp {
 	}
 
 	// Main application functionality execution
-	private void run() {
+	private void run() throws FileNotFoundException, IOException {
 
 		printWelcome();
 		// this.airfield = this.kb.nextLine();
-
-		// Read in aircraft from file and populate List
-		List<Jet> jetsList = populateAirfieldFromFile("initialData.txt");
-
-		// Instantiate a new Airfield instance and fill with fleet of jets
-		airfield = new Airfield(jetsList);
-
-		// Display menu to the user
+		initiateApplication();
+		
 		do {
+			// Display menu to the user and get choice
 			printMenuGetChoice();
 			processMenu();
-		} while (menuChoice != 10);
+		} while (menuChoice != 14);
 
-		// Print a list of the aircraft at the Airfield
+	}
+	
+	private void initiateApplication() throws FileNotFoundException, IOException {
+		
+		// Instantiate, read in, and populate aircraft into the Airfield List from file
+		List<Jet> jetsList = populateJetsFromFile();
+		
+		// Instantiate, read in, and populate pilots into the Pilot List from file
+		List<Pilot> pilotsList = populatePilotsFromFile();
+		
+		// Instantiate a new Airfield instance and fill with fleet of jets
+		airfield = new Airfield(jetsList, pilotsList);
+		
+		// Randomly assign pilots to aircraft
+		airfield.assignPilotsToAircraft();
 	}
 
 	private void processMenu() {
 
 		switch (menuChoice) {
 		case 1:
+			// Print a list of the aircraft at the Airfield
 			airfield.listFleet();
 			break;
 		case 2:
+			// Fly all aircraft in the airfield
 			airfield.fly();
 			break;
 		case 3:
+			// Search for the fastest aiicraft
 			airfield.fastestJet();
 			break;
 		case 4:
 			airfield.longestRangeJet();
+			// Search for the aircraft with the longest range
 			break;
 		case 5:
 			airfield.loadTransportAircraft();
 			airfield.finishLoadingTransportAircraft();
+			break;
+		case 6:
 			airfield.fillTankerAircraft();
 			airfield.finishFillingTankerAircraft();
 			break;
-		case 6:
+		case 7:
 			airfield.loadCombatAircraft();
 			airfield.finishloadingCombatAircraft();
-			airfield.startDogFight();
-			airfield.endDogFight();
-			break;
-		case 7:
-			addCustomJet();
 			break;
 		case 8:
-			removeJet();
+			airfield.startDogFight();
+			airfield.endDogFight();
 		case 9:
-			flyChosenJet();
+			addCustomJet();
 			break;
 		case 10:
+			removeJet();
+			break;
+		case 11:
+			flyChosenJet();
+			break;
+		case 12:
+			airfield.listPilots();
+			break;
+		case 13:
+			addPilot();
 			break;
 		default:
 			break;
@@ -106,7 +129,7 @@ public class JetsApp {
 			try {
 				jetToFly = kb.nextInt();
 			} catch (InputMismatchException e) {
-				System.out.println("Invalid input. Please try again.");
+				System.err.println("Invalid input. Please try again.");
 			}
 		} while (jetToFly == 0);
 
@@ -119,8 +142,7 @@ public class JetsApp {
 		System.out.println("*********************************");
 		System.out.println(
 				"1) List fleet\n" + "2) Fly all jets\n" + "3) View fastest jet\n" + "4) View jet with longest range\n"
-						+ "5) Load all Transport and Tanker Aircraft\n" + "6) Dogfight!\n" + "7) Add a jet to Fleet\n"
-						+ "8) Remove a jet from Fleet\n" + "9) Fly a jet of your choice\n" + "10) Quit\n");
+						+ "5) Load all Transport Aircraft\n" + "6) Fill all Tanker Aircraft\n" + "7) Load all Combat Aircraft\n" + "8) Dogfight!\n" + "9) Add a jet to Fleet\n" + "10) Remove a jet from Fleet\n" + "11) Fly a jet of your choice\n" + "12) List Pilots\n" + "13) Add Pilot\n" + "14) Quit\n");
 		System.out.println("*********************************\n");
 
 		System.out.print("Enter choice >> ");
@@ -128,7 +150,7 @@ public class JetsApp {
 		try {
 			menuChoice = kb.nextInt();
 		} catch (InputMismatchException e) {
-			System.out.println("Invalid input. Try again.");
+			System.err.println("Invalid input. Try again.");
 			kb.nextLine();
 		}
 		System.out.println();
@@ -176,7 +198,7 @@ public class JetsApp {
 			try {
 				choice = kb.nextInt();
 			} catch (Exception e1) {
-				System.out.println("\nInvalid input. Please try again\n");
+				System.err.println("\nInvalid input. Please try again\n");
 				kb.nextLine();
 			}
 		} while (choice != 1 && choice != 2 && choice != 3);
@@ -205,7 +227,7 @@ public class JetsApp {
 				range = kb.nextInt();
 
 			} catch (Exception e) {
-				System.out.println("\nInvalid input. Please try again.\n");
+				System.err.println("\nInvalid input. Please try again.\n");
 				kb.nextLine();
 				type = "";
 				model = "";
@@ -219,49 +241,119 @@ public class JetsApp {
 
 	}
 
-	private List<Jet> populateAirfieldFromFile(String fileName) {
+	private void addPilot() {
 
-		System.out.println("Populating airfield from file.");
+	}
+
+	private List<Pilot> populatePilotsFromFile() throws FileNotFoundException, IOException {
+		boolean successfulFileIO = true;
+		String fileName = "";
+
+		// Create list of pilots
+		List<Pilot> pilotsList = new ArrayList<>();
+
+		do {
+
+			System.out.println("What file will be used to populate the Pilots?");
+			System.out.print("File name >> ");
+
+			try {
+				fileName = kb.nextLine();
+			} catch (InputMismatchException e) {
+				System.err.println("\nInvalid input. Please try again.\n");
+				kb.nextLine();
+			}
+
+			try {
+				FileReader fr = new FileReader(fileName);
+				BufferedReader br = new BufferedReader(fr);
+				String line;
+				while ((line = br.readLine()) != null) {
+					String[] pilotField = line.split(";");
+					String name = pilotField[0];
+					String isHired = pilotField[1];
+					
+					Pilot newPilot = new PilotImpl(name, isHired);
+					pilotsList.add(newPilot);
+					}
+
+				br.close();
+			} catch (FileNotFoundException e) {
+				successfulFileIO = false;
+				System.err.println("Invalid filename: " + e.getMessage());
+				System.out.println("\nPlease try again.\n");
+				kb.nextLine();
+			} catch (IOException e) {
+				successfulFileIO = false;
+				System.err.println("Problem while reading " + fileName + ": " + e.getMessage());
+				System.out.println("\nPlease try again.\n");
+				kb.nextLine();
+			}
+		} while (successfulFileIO = false);
+		
+		return pilotsList;
+	}
+
+	
+	private List<Jet> populateJetsFromFile() throws FileNotFoundException, IOException {
+
+		boolean successfulFileIO = true;
+		String fileName = "";
 
 		// Create list of jets
 		List<Jet> jetsList = new ArrayList<>();
 
-		try {
-			FileReader fr = new FileReader(fileName);
-			BufferedReader br = new BufferedReader(fr);
-			String line;
-			int lineNum = 0;
-			while ((line = br.readLine()) != null) {
-				lineNum++;
-				String[] jetField = line.split(";");
-				String type = jetField[0];
-				String model = jetField[1];
-				// String payloadType = jetField[2];
-				double speed = Double.parseDouble(jetField[2]);
-				int range = Integer.parseInt(jetField[3]);
-				long price = Long.parseLong(jetField[4]);
-				// boolean msnReady = Boolean.parseBoolean(jetField[6]);
+		do {
 
-				if (type.equals("Combat")) {
-					Jet newCombatJet = new CombatAircraft(type, model, speed, range, price);
-					jetsList.add(newCombatJet);
-				} else if (type.equals("Tanker")) {
-					Jet newTankerJet = new TankerAircraft(type, model, speed, range, price);
-					jetsList.add(newTankerJet);
-				} else if (type.equals("Transport")) {
-					Jet newTransportJet = new TransportAircraft(type, model, speed, range, price);
-					jetsList.add(newTransportJet);
-				}
+			System.out.println("What file will be used to populate the Airfield?");
+			System.out.print("File name >> ");
 
+			try {
+				fileName = kb.nextLine();
+			} catch (InputMismatchException e) {
+				System.err.println("\nInvalid input. Please try again.\n");
+				kb.nextLine();
 			}
-			br.close();
-		} catch (FileNotFoundException e) {
-			System.err.println("Invalid filename: " + e.getMessage());
-			// return;
-		} catch (IOException e) {
-			System.err.println("Problem while reading " + fileName + ": " + e.getMessage());
-			// return;
-		}
+
+			try {
+				FileReader fr = new FileReader(fileName);
+				BufferedReader br = new BufferedReader(fr);
+				String line;
+				while ((line = br.readLine()) != null) {
+					String[] jetField = line.split(";");
+					String type = jetField[0];
+					String model = jetField[1];
+					double speed = Double.parseDouble(jetField[2]);
+					int range = Integer.parseInt(jetField[3]);
+					long price = Long.parseLong(jetField[4]);
+					String pilot = jetField[5];
+
+					if (type.equals("Combat")) {
+						Jet newCombatJet = new CombatAircraft(type, model, speed, range, price, pilot);
+						jetsList.add(newCombatJet);
+					} else if (type.equals("Tanker")) {
+						Jet newTankerJet = new TankerAircraft(type, model, speed, range, price, pilot);
+						jetsList.add(newTankerJet);
+					} else if (type.equals("Transport")) {
+						Jet newTransportJet = new TransportAircraft(type, model, speed, range, price, pilot);
+						jetsList.add(newTransportJet);
+					}
+
+				}
+				br.close();
+			} catch (FileNotFoundException e) {
+				successfulFileIO = false;
+				System.err.println("Invalid filename: " + e.getMessage());
+				System.out.println("\nPlease try again.\n");
+				kb.nextLine();
+			} catch (IOException e) {
+				successfulFileIO = false;
+				System.err.println("Problem while reading " + fileName + ": " + e.getMessage());
+				System.out.println("\nPlease try again.\n");
+				kb.nextLine();
+			}
+		} while (successfulFileIO = false);
+		
 		return jetsList;
 	}
 

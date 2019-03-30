@@ -6,10 +6,14 @@ public class JetImpl extends Jet {
 		super();
 	}
 
+	public JetImpl(String type, String model, double speed, int range, long price, String pilot) {
+		super(type, model, speed, range, price, pilot);
+	}
+
 	public JetImpl(String type, String model, double speed, int range, long price) {
 		super(type, model, speed, range, price);
 	}
-
+	
 	@Override
 	public void fly() {
 		System.out.print("Type: " + getType() + ", Model: " + getModel() + "\nSpeed: " + getSpeed() + ", Range: "

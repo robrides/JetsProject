@@ -6,28 +6,48 @@ import java.util.Optional;
 public class Airfield {
 
 	private List<Jet> jets;
+	private List<Pilot> pilots;
 
 	public Airfield() {
 		super();
 	}
 
-	public Airfield(List<Jet> jets) {
+	public Airfield(List<Jet> jets, List<Pilot> pilots) {
 		super();
 		this.jets = jets;
+		this.pilots = pilots;
 	}
 
 	public void listFleet() {
 
 		System.out.println("The fleet: ");
 
-		// for (Jet jet : jets) {
 		for (int i = 0; i < jets.size(); i++) {
 			System.out.print(i + 1 + ". " + jets.get(i) + "\n");
+		}
+		System.out.println();
+	}
+	
+	public void listPilots() {
 
+		System.out.println("The pilots: ");
+
+		for (int i = 0; i < pilots.size(); i++) {
+			System.out.print(i + 1 + ". " + pilots.get(i) + "\n");
 		}
 		System.out.println();
 	}
 
+	public void assignPilotsToAircraft() {
+		int rand = 0;
+		
+		for (Jet jet : jets) {
+			rand = (int) (Math.random() * pilots.size()) + 1;
+			System.out.println("Random no. " + rand);
+			jet.setPilot(pilots.get(rand).getName());
+		}
+	}
+	
 	public void fly() {
 		for (Jet jet : jets) {
 			jet.fly();

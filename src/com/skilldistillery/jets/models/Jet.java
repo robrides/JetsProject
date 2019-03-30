@@ -7,11 +7,21 @@ public abstract class Jet {
 	private double speed;
 	private int range;
 	private long price;
+	private String pilot;
 
 	public Jet() {
 		super();
 	}
 
+	public Jet(String type, String model, double speed, int range, long price, String pilot) {
+		super();
+		this.type = type;
+		this.model = model;
+		this.speed = speed;
+		this.range = range;
+		this.price = price;
+		this.pilot = pilot;
+	}
 	public Jet(String type, String model, double speed, int range, long price) {
 		super();
 		this.type = type;
@@ -63,19 +73,25 @@ public abstract class Jet {
 		this.range = range;
 	}
 
-//	public boolean isMsnReady() {
-//		return msnReady;
-//	}
-//
-//	public void setMsnReady(boolean msnReady) {
-//		this.msnReady = msnReady;
-//	}
+	public String getPilot() {
+		return pilot;
+	}
+	
+	public void setPilot(String pilot) {
+		this.pilot = pilot;
+	}
+
+	@Override
+	public String toString() {
+		return "Type: " + type + ", Model: " + model + ", Speed: " + speed + "\n\tPrice= " + price + ", Range= " + range + ", Pilot: " + pilot;
+	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((model == null) ? 0 : model.hashCode());
+		result = prime * result + ((pilot == null) ? 0 : pilot.hashCode());
 		result = prime * result + (int) (price ^ (price >>> 32));
 		result = prime * result + range;
 		long temp;
@@ -99,6 +115,11 @@ public abstract class Jet {
 				return false;
 		} else if (!model.equals(other.model))
 			return false;
+		if (pilot == null) {
+			if (other.pilot != null)
+				return false;
+		} else if (!pilot.equals(other.pilot))
+			return false;
 		if (price != other.price)
 			return false;
 		if (range != other.range)
@@ -113,10 +134,5 @@ public abstract class Jet {
 		return true;
 	}
 
-	@Override
-	public String toString() {
-		return "Type: " + type + ", Model: " + model + ", Speed: " + speed + "\n\tPrice= " + price + ", Range= "
-				+ range;
-	}
 
 }
