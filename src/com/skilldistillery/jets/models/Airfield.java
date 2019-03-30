@@ -2,8 +2,6 @@ package com.skilldistillery.jets.models;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.Set;
-import java.util.TreeSet;
 
 public class Airfield {
 

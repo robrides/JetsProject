@@ -1,6 +1,6 @@
 package com.skilldistillery.jets.models;
 
-public abstract class Jet {
+public abstract class Jet implements MaintenanceStatus {
 
 	private String type;
 	private String model;
@@ -8,12 +8,27 @@ public abstract class Jet {
 	private int range;
 	private long price;
 	// private String payloadType;
-	// private boolean msnReady;
+	private boolean msnReady;
+
+	@Override
+	public boolean msnReady() {
+		return msnReady;
+	}
+
+	@Override
+	public void placeInMx() {
+		msnReady = false;
+	}
+
+	@Override
+	public void setOperational() {
+		msnReady = true;
+	}
 
 	public Jet() {
 		super();
 	}
-	
+
 	public Jet(String type, String model, double speed, int range, long price) {
 		super();
 		this.type = type;
@@ -24,11 +39,10 @@ public abstract class Jet {
 	}
 
 	public abstract void fly();
-	
+
 	public String getType() {
 		return type;
 	}
-
 
 	public void setType(String type) {
 		this.type = type;

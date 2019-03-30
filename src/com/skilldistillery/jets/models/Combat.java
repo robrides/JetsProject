@@ -1,6 +1,6 @@
 package com.skilldistillery.jets.models;
 
-public class Combat extends Jet {
+public class Combat extends Jet implements CombatReady {
 
 	public Combat() {
 		super();
@@ -17,6 +17,24 @@ public class Combat extends Jet {
 		System.out.printf("%.2f", ((getRange() / getSpeed())));
 		System.out.print(" hours.");
 		System.out.println("\nAirborne and ready to engage!\n");
+	}
+
+	@Override
+	public boolean readyToFight() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public void munitionsLoading() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void msnCapable() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
