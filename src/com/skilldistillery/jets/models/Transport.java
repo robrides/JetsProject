@@ -11,4 +11,7 @@ public class Transport extends Jet{
 
 	}
 	
+	public void fly() {
+		super.fly();
+	}
 }

@@ -11,4 +11,8 @@ public class Tanker extends Jet {
 
 	}
 	
+	public void fly() {
+		super.fly();
+	}
+	
 }

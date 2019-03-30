@@ -23,6 +23,10 @@ public abstract class Jet {
 		this.price = price;
 	}
 
+	public void fly() {
+		
+	}
+	
 	public String getType() {
 		return type;
 	}

@@ -18,7 +18,9 @@ public class JetsApp {
 
 	//private String airfield;
 	private Scanner kb;
-	Airfield airfield; 
+	private Airfield airfield; 
+	private int menuChoice;
+	
 	
 	public static void main(String[] args) {
 		JetsApp jetsApp = new JetsApp();
@@ -38,8 +40,51 @@ public class JetsApp {
 		// Instantiate a new Airfield instance and fill with fleet of jets
 		airfield = new Airfield(jetsList);
 		
+		// Display menu to the user
+		printMenuGetChoice();
+		
+		processMenu();
+		
 		// Print a list of the aircraft at the Airfield
-		airfield.listFleet();
+	}
+	
+	private void processMenu() {
+
+		switch(menuChoice) {
+		case 1:
+			airfield.listFleet();
+			break;
+		case 2:
+		case 3:
+		case 4:
+		case 5:
+		case 6:
+		case 7:
+		case 8:
+		case 9:
+			default:
+				break;		
+			
+		}
+		
+	}
+
+	private void printMenuGetChoice() {
+		
+		System.out.println("Please select from the following menu by entering the number of your choice.\n");
+		System.out.println("*********************************");
+		System.out.println("1) List fleet\n" + 
+				"2) Fly all jets\n" + 
+				"3) View fastest jet\n" + 
+				"4) View jet with longest range\n" + 
+				"5) Load all Cargo Jets\n" + 
+				"6) Dogfight!\n" + 
+				"7) Add a jet to Fleet\n" + 
+				"8) Remove a jet from Fleet\n" + 
+				"9) Quit");
+		System.out.println("*********************************");
+		menuChoice = kb.nextInt();
+		
 	}
 	
 	private void printWelcome() {
@@ -51,6 +96,9 @@ public class JetsApp {
 
 	public List<Jet> populateAirfieldFromFile(String fileName) {
 
+		System.out.println("Populating airfield from file.\n");
+		
+		// Create list of jets
 		List<Jet> jetsList = new ArrayList<>();
 		
 

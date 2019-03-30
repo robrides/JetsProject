@@ -11,4 +11,8 @@ public class Combat extends Jet{
 
 	}
 	
+	public void fly() {
+		super.fly();
+	}
+	
 }
