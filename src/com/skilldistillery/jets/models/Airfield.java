@@ -42,22 +42,12 @@ public class Airfield {
 			Collections.sort(jets, new SortBySpeed());
 			System.out.println("The fastest jet is:\n" + jets.get(0));
 			
-			//			Set<String> fastest = new TreeSet<>();
-//			
-//			for (Jet jet : jets) {
-//				fastest.add(Double.toString(jet.getSpeed()));
-//			}
-//			System.out.println(fastest);
-			
 		}
 		
-		public void sortAirfieldByInput() {
-			
-			Collections.sort(jets, new SortBySpeed());
-			
-			for (int i = 0; i <  jets.size(); i++) {
-				System.out.println(jets.get(i));
-			}
+		public void longestRangeJet() {
+
+			Collections.sort(jets, new SortByRange());
+			System.out.println("The longest range jet is:\n" + jets.get(0));
 			
 		}
 

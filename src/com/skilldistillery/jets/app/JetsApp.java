@@ -59,7 +59,10 @@ public class JetsApp {
 			break;
 		case 3:
 			airfield.fastestJet();
+			break;
 		case 4:
+			airfield.longestRangeJet();
+			break;
 		case 5:
 		case 6:
 		case 7:
