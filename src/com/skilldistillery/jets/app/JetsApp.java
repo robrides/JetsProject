@@ -56,7 +56,9 @@ public class JetsApp {
 			break;
 		case 2:
 			airfield.fly();
+			break;
 		case 3:
+			airfield.fastestJet();
 		case 4:
 		case 5:
 		case 6:
@@ -86,6 +88,7 @@ public class JetsApp {
 		System.out.println("*********************************\n");
 		System.out.print("Enter choice >> ");
 		menuChoice = kb.nextInt();
+		System.out.println();
 		
 	}
 	

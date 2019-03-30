@@ -1,6 +1,9 @@
 package com.skilldistillery.jets.models;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 
 public class Airfield {
 
@@ -17,7 +20,7 @@ public class Airfield {
 	
 		public void listFleet() {
 
-			System.out.println("The fleet: \n");
+			System.out.println("The fleet: ");
 			
 			for (Jet jet : jets) {
 				System.out.print("Aircraft Type: " + jet.getType());
@@ -29,10 +32,19 @@ public class Airfield {
 		}
 		
 		public void fly() {
-			System.out.println();
 			for (Jet jet : jets) {
 				jet.fly();
 			}
+		}
+		
+		public void fastestJet() {
+			Set<String> fastest = new TreeSet<>();
+			
+			for (Jet jet : jets) {
+				fastest.add(Double.toString(jet.getSpeed()));
+			}
+			System.out.println(fastest);
+			
 		}
 
 		@Override

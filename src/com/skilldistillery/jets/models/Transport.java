@@ -12,7 +12,10 @@ public class Transport extends Jet{
 	}
 	
 	public void fly() {
-		System.out.print(this.getModel());
-		System.out.println(": Airborne and bringing the boots, beans, and bullets!");
+		System.out.print("Type: " + getType() + ", Model: " + getModel() + ", Speed: " + getSpeed() + ", Range: "
+				+ getRange() + ", Flight Time: ");
+		System.out.printf("%.2f", ((getRange() / getSpeed())));
+		System.out.print(" hours.");
+		System.out.println("\nAirborne and bringing the boots, beans, and bullets!\n");
 	}
 }

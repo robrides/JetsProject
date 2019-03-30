@@ -12,8 +12,11 @@ public class Tanker extends Jet {
 	}
 	
 	public void fly() {
-		System.out.print(this.getModel());
-		System.out.println(": Airborne and ready to pump gas!");
+		System.out.print("Type: " + getType() + ", Model: " + getModel() + ", Speed: " + getSpeed() + ", Range: "
+				+ getRange() + ", Flight Time: ");
+		System.out.printf("%.2f", ((getRange() / getSpeed())));
+		System.out.print(" hours.");
+		System.out.println("\nAirborne and ready to pump gas!\n");
 	}
 	
 }
