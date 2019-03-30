@@ -7,7 +7,6 @@ public abstract class Jet implements MaintenanceStatus {
 	private double speed;
 	private int range;
 	private long price;
-	// private String payloadType;
 	private boolean msnReady;
 
 	@Override
@@ -56,14 +55,6 @@ public abstract class Jet implements MaintenanceStatus {
 		this.model = model;
 	}
 
-//	public String getPayloadType() {
-//		return payloadType;
-//	}
-
-//	public void setPayloadType(String payloadType) {
-//		this.payloadType = payloadType;
-//	}
-
 	public double getSpeed() {
 		return speed;
 	}
@@ -101,9 +92,6 @@ public abstract class Jet implements MaintenanceStatus {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((model == null) ? 0 : model.hashCode());
-		// result = prime * result + (msnReady ? 1231 : 1237);
-		// result = prime * result + ((payloadType == null) ? 0 :
-		// payloadType.hashCode());
 		result = prime * result + (int) (price ^ (price >>> 32));
 		result = prime * result + range;
 		long temp;
@@ -127,13 +115,6 @@ public abstract class Jet implements MaintenanceStatus {
 				return false;
 		} else if (!model.equals(other.model))
 			return false;
-//		if (msnReady != other.msnReady)
-//			return false;
-//		if (payloadType == null) {
-//			if (other.payloadType != null)
-//				return false;
-//		} else if (!payloadType.equals(other.payloadType))
-//			return false;
 		if (price != other.price)
 			return false;
 		if (range != other.range)
