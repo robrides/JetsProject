@@ -46,7 +46,7 @@ public class JetsApp {
 		do {
 			printMenuGetChoice();
 			processMenu();
-		} while (menuChoice != 9);
+		} while (menuChoice != 10);
 
 		// Print a list of the aircraft at the Airfield
 	}
@@ -84,6 +84,9 @@ public class JetsApp {
 		case 8:
 			removeJet();
 		case 9:
+			flyChosenJet();
+			break;
+		case 10:
 			break;
 		default:
 			break;
@@ -92,13 +95,32 @@ public class JetsApp {
 
 	}
 
+	private void flyChosenJet() {
+		int jetToFly = 0;
+
+		do {
+
+			airfield.listFleet();
+			System.out.println("Enter the number of the jet you would like to fly >>");
+
+			try {
+				jetToFly = kb.nextInt();
+			} catch (InputMismatchException e) {
+				System.out.println("Invalid input. Please try again.");
+			}
+		} while (jetToFly == 0);
+
+		airfield.chooseJetToFly(jetToFly);
+	}
+
 	private void printMenuGetChoice() {
 
 		System.out.println("\nPlease select from the following menu by\nentering the number of your choice.");
 		System.out.println("*********************************");
-		System.out.println("1) List fleet\n" + "2) Fly all jets\n" + "3) View fastest jet\n"
-				+ "4) View jet with longest range\n" + "5) Load all Transport and Tanker Aircraft\n" + "6) Dogfight!\n"
-				+ "7) Add a jet to Fleet\n" + "8) Remove a jet from Fleet\n" + "9) Quit");
+		System.out.println(
+				"1) List fleet\n" + "2) Fly all jets\n" + "3) View fastest jet\n" + "4) View jet with longest range\n"
+						+ "5) Load all Transport and Tanker Aircraft\n" + "6) Dogfight!\n" + "7) Add a jet to Fleet\n"
+						+ "8) Remove a jet from Fleet\n" + "9) Fly a jet of your choice\n" + "10) Quit\n");
 		System.out.println("*********************************\n");
 
 		System.out.print("Enter choice >> ");

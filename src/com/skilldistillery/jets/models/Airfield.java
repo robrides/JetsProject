@@ -139,4 +139,13 @@ public class Airfield {
 		jetRemoved = jets.remove(jetToRemove - 1);
 		return jetRemoved;
 	}
+
+	public void chooseJetToFly(int jetToFly) {
+		
+		for (Jet jet : jets) {
+			if (jet.equals(jets.get(jetToFly - 1))) {
+				jet.fly();
+			}
+		}
+	}
 }
