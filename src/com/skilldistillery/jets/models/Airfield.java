@@ -2,6 +2,7 @@ package com.skilldistillery.jets.models;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 public class Airfield {
 
@@ -37,15 +38,19 @@ public class Airfield {
 		
 		public void fastestJet() {
 
-			Collections.sort(jets, new SortBySpeed());
-			System.out.println("The fastest jet is:\n" + jets.get(0));
+			Optional<Jet> fastest = jets.stream()
+                    .max((j1, j2) -> (int) j1.getSpeed() - (int) j2.getSpeed());
+			// Collections.sort(jets, new SortBySpeed());
+			System.out.println("The fastest jet is:\n" + fastest);
 			
 		}
 		
 		public void longestRangeJet() {
 
-			Collections.sort(jets, new SortByRange());
-			System.out.println("The longest range jet is:\n" + jets.get(0));
+			Optional<Jet> longestRange = jets.stream()
+                    .max((j1, j2) -> j1.getRange() - j2.getRange());
+			// Collections.sort(jets, new SortByRange());
+			System.out.println("The longest range jet is:\n" + longestRange);
 			
 		}
 
@@ -54,5 +59,94 @@ public class Airfield {
 			return "Airfield [jets=" + jets + "]";
 		}
 		
+		public void loadTransportAircraft() {
+			
+			for (Jet trnsptLoad : jets) {
+				
+				if (trnsptLoad instanceof TransportAircraft) {
+					
+					((TransportAircraft) trnsptLoad).loading();
+				}
+			}
+		}
+
+		public void finishLoadingTransportAircraft() {
+			
+			for (Jet trnsptLoad : jets) {
+				
+				if (trnsptLoad instanceof TransportAircraft) {
+					// if ((boolean) trnsptLoad.msnReady()){
+					((TransportAircraft) trnsptLoad).loadingComplete();
+					// }
+				}
+			}
+		}
 		
+		public void fillTankerAircraft() {
+			
+			for (Jet tankerFill : jets) {
+				
+				if (tankerFill instanceof TankerAircraft) {
+					
+					((TankerAircraft) tankerFill).loading();;
+				}
+			}
+		}
+
+		public void finishFillingTankerAircraft() {
+			for (Jet tankerFill : jets) {
+				
+				if (tankerFill instanceof TankerAircraft) {
+					// if ((boolean) trnsptLoad.msnReady()){
+					((TankerAircraft) tankerFill).loadingComplete();
+					// }
+				}
+			}
+		}	
+		
+		public void loadCombatAircraft() {
+			
+			for (Jet combatLoad : jets) {
+				
+				if (combatLoad instanceof CombatAircraft) {
+					
+					((CombatAircraft) combatLoad).munitionsLoading();
+				}
+			}
+		}
+
+		public void finishloadingCombatAircraft() {
+			for (Jet combatLoad : jets) {
+				
+				if (combatLoad instanceof CombatAircraft) {
+					// if ((boolean) trnsptLoad.msnReady()){
+					((CombatAircraft) combatLoad).munitionsOnboard();
+					// }
+				}
+			}
+		}
+		
+		public void startDogFight() {
+			
+			for (Jet goToCombat : jets) {
+				
+				if (goToCombat instanceof CombatAircraft) {
+				//	if ((boolean) goToCombat.msnReady()){
+						((CombatAircraft) goToCombat).attack();
+				//	}
+					
+				}
+			}
+		}
+		
+		public void endDogFight() {
+			
+			for (Jet goToCombat : jets) {
+				
+				if (goToCombat instanceof CombatAircraft) {
+					
+					((CombatAircraft) goToCombat).disengage();
+				}
+			}
+		}
 }

@@ -9,10 +9,10 @@ import java.util.List;
 import java.util.Scanner;
 
 import com.skilldistillery.jets.models.Airfield;
-import com.skilldistillery.jets.models.Combat;
+import com.skilldistillery.jets.models.CombatAircraft;
 import com.skilldistillery.jets.models.Jet;
-import com.skilldistillery.jets.models.Tanker;
-import com.skilldistillery.jets.models.Transport;
+import com.skilldistillery.jets.models.TankerAircraft;
+import com.skilldistillery.jets.models.TransportAircraft;
 
 public class JetsApp {
 
@@ -64,7 +64,14 @@ public class JetsApp {
 			airfield.longestRangeJet();
 			break;
 		case 5:
+			airfield.loadTransportAircraft();
+			airfield.finishLoadingTransportAircraft();
+			break;
 		case 6:
+			airfield.loadCombatAircraft();
+			airfield.finishloadingCombatAircraft();
+			airfield.startDogFight();
+			airfield.endDogFight();
 		case 7:
 		case 8:
 		case 9:
@@ -83,7 +90,7 @@ public class JetsApp {
 				"2) Fly all jets\n" + 
 				"3) View fastest jet\n" + 
 				"4) View jet with longest range\n" + 
-				"5) Load all Cargo Jets\n" + 
+				"5) Load all Transport Aircraft\n" + 
 				"6) Dogfight!\n" + 
 				"7) Add a jet to Fleet\n" + 
 				"8) Remove a jet from Fleet\n" + 
@@ -127,13 +134,13 @@ public class JetsApp {
 				// boolean msnReady = Boolean.parseBoolean(jetField[6]);
 
 				if (type.equals("Combat")) {
-					Jet newCombatJet = new Combat(type, model, speed, range, price);
+					Jet newCombatJet = new CombatAircraft(type, model, speed, range, price);
 					jetsList.add(newCombatJet);
 				} else if (type.equals("Tanker")) {
-					Jet newTankerJet = new Tanker(type, model, speed, range, price);
+					Jet newTankerJet = new TankerAircraft(type, model, speed, range, price);
 					jetsList.add(newTankerJet);
 				} else if (type.equals("Transport")) {
-					Jet newTransportJet = new Transport(type, model, speed, range, price);
+					Jet newTransportJet = new TransportAircraft(type, model, speed, range, price);
 					jetsList.add(newTransportJet);
 				}
 
