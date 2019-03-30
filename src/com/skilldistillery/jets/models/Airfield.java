@@ -27,6 +27,13 @@ public class Airfield {
 				System.out.println(", Price: $" + jet.getPrice());
 			}			
 		}
+		
+		public void fly() {
+			System.out.println();
+			for (Jet jet : jets) {
+				jet.fly();
+			}
+		}
 
 		@Override
 		public String toString() {

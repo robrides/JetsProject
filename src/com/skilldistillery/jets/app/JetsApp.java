@@ -55,6 +55,7 @@ public class JetsApp {
 			airfield.listFleet();
 			break;
 		case 2:
+			airfield.fly();
 		case 3:
 		case 4:
 		case 5:
@@ -82,7 +83,8 @@ public class JetsApp {
 				"7) Add a jet to Fleet\n" + 
 				"8) Remove a jet from Fleet\n" + 
 				"9) Quit");
-		System.out.println("*********************************");
+		System.out.println("*********************************\n");
+		System.out.print("Enter choice >> ");
 		menuChoice = kb.nextInt();
 		
 	}
