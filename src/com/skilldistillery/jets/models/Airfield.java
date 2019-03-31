@@ -22,7 +22,7 @@ public class Airfield {
 	}
 
 	public void listFleet() {
-
+		// List all jets in the Airfield
 		System.out.println("The fleet: ");
 
 		for (int i = 0; i < jets.size(); i++) {
@@ -30,9 +30,10 @@ public class Airfield {
 		}
 		System.out.println();
 	}
-	
+
 	public void listPilots() {
 
+		// List all the pilots at the Airfield
 		System.out.println("The pilots: ");
 
 		for (int i = 0; i < pilots.size(); i++) {
@@ -45,22 +46,23 @@ public class Airfield {
 
 		int rand = 0;
 		Set<Integer> randPilotsSet = new TreeSet<>();
-		
-		// Place random int in a TreeSet the same size as the jets list.  TreeSet ensures no duplicates.
+
+		// Place random int in a TreeSet the same size as the jets list. TreeSet ensures
+		// no duplicates.
 		while (randPilotsSet.size() < jets.size()) {
-			rand = (int) (Math.random() * pilots.size()) + 1;
+			rand = (int) (Math.random() * pilots.size());
 			randPilotsSet.add(rand);
 		}
-		
-		// Place the TreeSet into a List so that the get() method may be used in populating the pilot in the jets list
+		// Place the TreeSet into a List so that the get() method may be used in
+		// populating the pilot in the jets list
 		List<Integer> randPilotsIndexes = new ArrayList<>(randPilotsSet.size());
 		randPilotsIndexes.addAll(randPilotsSet);
-		
+
 		for (int i = 0; i < jets.size(); i++) {
-			jets.get(i).setPilot(pilots.get(randPilotsIndexes.get(i)).getName()); 
+			jets.get(i).setPilot(pilots.get(randPilotsIndexes.get(i)).getName());
 		}
 	}
-	
+
 	public void fly() {
 		for (Jet jet : jets) {
 			jet.fly();
@@ -174,11 +176,37 @@ public class Airfield {
 	}
 
 	public void chooseJetToFly(int jetToFly) {
-		
+
 		for (Jet jet : jets) {
 			if (jet.equals(jets.get(jetToFly - 1))) {
 				jet.fly();
 			}
 		}
+	}
+
+	public void choosePilotToHire(int pilotToHire) {
+
+		for (Pilot pilot : pilots) {
+			if (pilot.equals(pilots.get(pilotToHire - 1))) {
+				if (pilot.getIsHired().equals("No")) {
+					setPilotForJet(pilots.get(pilotToHire - 1));
+				} else {
+					System.out.println(pilots.get(pilotToHire - 1) + " is hired already.");
+				}
+			}
+		}
+	}
+
+	private void setPilotForJet(Pilot pilotToHire) {
+
+		pilotToHire.setIsHired("Yes");
+		System.out.println("You have hired " + pilotToHire);
+		System.out.println("Pilot status: ");
+		listPilots();
+		System.out.println();
+	}
+
+	public List<Jet> getListOfJets() {
+		return jets;
 	}
 }

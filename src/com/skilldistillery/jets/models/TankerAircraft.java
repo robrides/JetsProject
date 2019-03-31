@@ -68,6 +68,4 @@ public class TankerAircraft extends Jet implements TransportAndTankerLoad {
 		return true;
 	}
 	
-	
-	
 }
