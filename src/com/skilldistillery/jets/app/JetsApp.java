@@ -52,7 +52,7 @@ public class JetsApp {
 	private void initiateApplication() throws FileNotFoundException, IOException {
 
 		System.out.println(
-				"Note: Though Exceptions are caught, the application is currently\nunable to recover and continue from that event.\n\nFilenames requested below are:\nAirfield: initialData.txt\nPilots: pilotData.txt\nThese must be entered acturately for the application to contine.\n\n");
+				"Note: Filenames requested below are:\nAirfield: initialData.txt\nPilots: pilotData.txt\nThese must be entered accurately for the application to contine.\n\n");
 
 		// Instantiate, read in, and populate aircraft into the Airfield List from file
 		List<Jet> jetsList = populateJetsFromFile();
@@ -79,7 +79,7 @@ public class JetsApp {
 			airfield.fly();
 			break;
 		case 3:
-			// Search for the fastest aiicraft
+			// Search for the fastest aircraft
 			airfield.fastestJet();
 			break;
 		case 4:
@@ -101,6 +101,7 @@ public class JetsApp {
 		case 8:
 			airfield.startDogFight();
 			airfield.endDogFight();
+			break;
 		case 9:
 			addCustomJet();
 			break;
@@ -145,8 +146,8 @@ public class JetsApp {
 					PrintWriter pw = new PrintWriter(fw);
 					for (Jet jet : airfield.getListOfJets()) {
 						pw.println(jet);
-						System.out.println("\nFile written successfully.\n");
 					}
+					System.out.println("\nFile written successfully.\n");
 					pw.close();
 
 				} else {
@@ -157,7 +158,7 @@ public class JetsApp {
 				System.err.println("File name already in use. Please try again.");
 				successfulFileIO = false;
 			} catch (IOException e) {
-				System.out.println("File name not available. Please try again.");
+				System.err.println("File name not available. Please try again.");
 				successfulFileIO = false;
 			}
 		} while (successfulFileIO == false);
@@ -205,7 +206,7 @@ public class JetsApp {
 		System.out.println("\nPlease select from the following menu by\nentering the number of your choice.");
 		System.out.println("*********************************");
 		System.out.println(
-				"1) List fleet\n" + "2) Fly all jets\n" + "3) View fastest jet\n" + "4) View jet with longest range\n"
+				"1) List fleet and assigned pilots\n" + "2) Fly all jets\n" + "3) View fastest jet\n" + "4) View jet with longest range\n"
 						+ "5) Load all Transport Aircraft\n" + "6) Fill all Tanker Aircraft\n"
 						+ "7) Load all Combat Aircraft\n" + "8) Dogfight!\n" + "9) Add a jet to Fleet\n"
 						+ "10) Remove a jet from Fleet\n" + "11) Fly a jet of your choice\n" + "12) List Pilots\n"
@@ -249,6 +250,7 @@ public class JetsApp {
 	private void addCustomJet() {
 		String type = "";
 		String model = "";
+		String pilot = "no pilot";
 		double speed = 0.0;
 		int range = 0;
 		long price = 0;
@@ -291,7 +293,7 @@ public class JetsApp {
 				System.out.println("Enter the jet's range >> ");
 				range = kb.nextInt();
 				System.out.println("Enter the jet's price >> ");
-				range = kb.nextInt();
+				price = kb.nextLong();
 
 			} catch (Exception e) {
 				System.err.println("\nInvalid input. Please try again.\n");
@@ -304,15 +306,22 @@ public class JetsApp {
 		} while (model.equals("") && speed == 0.0 && range == 0 && price == 0.0);
 
 		System.out.println("The following jet was added.");
-		System.out.println(airfield.addCustomJet(type, model, speed, range, price));
+		System.out.println(airfield.addCustomJet(choice, type, model, speed, range, price, pilot));
 
 	}
 
 	private void addPilot() {
 
+		String pilotName = "";
+
+			System.out.println("Enter the pilot's name >> ");
+				pilotName = kb.next();
+				kb.nextLine();
+
+		System.out.println("The following pilot was added.");
+		System.out.println(airfield.addPilot(pilotName));
 	}
 
-	@SuppressWarnings("finally")
 	private List<Pilot> populatePilotsFromFile() throws FileNotFoundException, IOException {
 		boolean successfulFileIO = true;
 		String fileName = "";
@@ -321,16 +330,9 @@ public class JetsApp {
 		List<Pilot> pilotsList = new ArrayList<>();
 
 		do {
-
 			System.out.println("What file will be used to populate the Pilots?");
 			System.out.print("File name >> ");
-
-			try {
-				fileName = kb.nextLine();
-			} catch (InputMismatchException e) {
-				System.err.println("\nInvalid input. Please try again.\n");
-				break;
-			}
+			fileName = kb.nextLine();
 
 			try {
 				FileReader fr = new FileReader(fileName);
@@ -348,18 +350,12 @@ public class JetsApp {
 				br.close();
 			} catch (FileNotFoundException e) {
 				successfulFileIO = false;
-				System.err.println("Invalid filename: " + e.getMessage());
-				System.out.println("\nPlease try again.\n");
+				System.err.print("Invalid filename. Please try again.\n");
+				kb.nextLine();
 			} catch (IOException e) {
 				successfulFileIO = false;
-				System.err.println("Problem while reading " + fileName + ": " + e.getMessage());
-				System.out.println("\nPlease try again.\n");
-			} finally {
-				if (successfulFileIO == false) {
-					break;
-				} else {
-					continue;
-				}
+				System.err.print("Invalid filename. Please try again.\n");
+				kb.nextLine();
 			}
 		} while (successfulFileIO = false);
 
@@ -378,13 +374,7 @@ public class JetsApp {
 
 			System.out.println("What file will be used to populate the Airfield?");
 			System.out.print("File name >> ");
-
-			try {
-				fileName = kb.nextLine();
-			} catch (InputMismatchException e) {
-				System.err.println("\nInvalid input. Please try again.\n");
-				kb.nextLine();
-			}
+			fileName = kb.nextLine();
 
 			try {
 				FileReader fr = new FileReader(fileName);
@@ -414,13 +404,11 @@ public class JetsApp {
 				br.close();
 			} catch (FileNotFoundException e) {
 				successfulFileIO = false;
-				System.err.println("Invalid filename: " + e.getMessage());
-				System.out.println("\nPlease try again.\n");
+				System.err.print("Invalid filename. Please try again.\n");
 				kb.nextLine();
 			} catch (IOException e) {
 				successfulFileIO = false;
-				System.err.println("Problem while reading " + fileName + ": " + e.getMessage());
-				System.out.println("\nPlease try again.\n");
+				System.err.print("Invalid filename. Please try again.\n");
 				kb.nextLine();
 			}
 		} while (successfulFileIO = false);

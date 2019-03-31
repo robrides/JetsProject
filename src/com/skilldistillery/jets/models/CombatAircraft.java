@@ -14,7 +14,7 @@ public class CombatAircraft extends Jet implements CombatReady {
 	}
 
 	public void fly() {
-		System.out.print("Type: " + getType() + ", Model: " + getModel() + "\nSpeed: " + getSpeed() + ", Range: "
+		System.out.print(this.getClass().getSimpleName() + ": " +  ", Model: " + getModel() + "\nSpeed: " + getSpeed() + ", Range: "
 				+ getRange() + ", Flight Time: ");
 		System.out.printf("%.2f", ((getRange() / getSpeed())));
 		System.out.print(" hours.");
@@ -47,11 +47,11 @@ public class CombatAircraft extends Jet implements CombatReady {
 	}
 	
 	private void startAttack() {
-		System.out.println(getModel() + " reports, enemy in sights. Missles deployed.");
+		System.out.println(this.getClass().getSimpleName() + ": " + getModel() + " reports, enemy in sights. Missles deployed.");
 	}
 	
 	private void enemyEliminated() {
-		System.out.println(getModel() + " reports, threat neutralized!");
+		System.out.println(this.getClass().getSimpleName() + ": " + getModel() + " reports, threat neutralized!");
 	}
 
 	@Override

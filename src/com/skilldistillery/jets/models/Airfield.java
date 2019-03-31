@@ -78,7 +78,7 @@ public class Airfield {
 	}
 
 	public void longestRangeJet() {
-		
+
 		// Used Optional to determine the highest number in the ArrayList
 		Optional<Jet> longestRange = jets.stream().max((j1, j2) -> j1.getRange() - j2.getRange());
 		System.out.println("The longest range jet is:\n" + longestRange.get() + "\n");
@@ -163,12 +163,24 @@ public class Airfield {
 		}
 	}
 
-	public Jet addCustomJet(String type, String model, double speed, int range, long price) {
+	public String addCustomJet(int choice, String type, String model, double speed, int range, long price, String pilot) {
+		
+		switch (choice) {
+		case 1:
+			Jet newJet = new TransportAircraft(type, model, speed, range, price, pilot);
+			jets.add(newJet);
+			return newJet.toString();
+		case 2:
+			Jet newJet2 = new TankerAircraft(type, model, speed, range, price, pilot);
+			jets.add(newJet2);
+			return newJet2.toString();
+		case 3:
+			Jet newJet3 = new CombatAircraft(type, model, speed, range, price, pilot);
+			jets.add(newJet3);
+			return newJet3.toString();
+		}
 
-		Jet newJet = new JetImpl(type, model, speed, range, price);
-		jets.add(newJet);
-		return newJet;
-
+		return "Error while adding jet.";
 	}
 
 	public Jet removeJet(int jetToRemove) {
@@ -210,5 +222,12 @@ public class Airfield {
 
 	public List<Jet> getListOfJets() {
 		return jets;
+	}
+
+	public String addPilot(String pilotName) {
+		
+		Pilot p = new PilotImpl(pilotName, "No");
+		pilots.add(p);
+		return p.toString();
 	}
 }

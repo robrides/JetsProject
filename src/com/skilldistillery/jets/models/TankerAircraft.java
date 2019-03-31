@@ -14,7 +14,7 @@ public class TankerAircraft extends Jet implements TransportAndTankerLoad {
 	}
 	
 	public void fly() {
-		System.out.print("Type: " + getType() + ", Model: " + getModel() + "\nSpeed: " + getSpeed() + ", Range: "
+		System.out.print(this.getClass().getSimpleName() + ": " + ", Model: " + getModel() + "\nSpeed: " + getSpeed() + ", Range: "
 				+ getRange() + ", Flight Time: ");
 		System.out.printf("%.2f", ((getRange() / getSpeed())));
 		System.out.print(" hours.");
@@ -39,11 +39,11 @@ public class TankerAircraft extends Jet implements TransportAndTankerLoad {
 	}
 
 	private void startFilling() {
-		System.out.println("Tanker " + getModel() + ", loading gas.");
+		System.out.println(this.getClass().getSimpleName() + ": " + getModel() + ", loading gas.");
 	}
 
 	private void fullOfFuel() {
-		System.out.println("Tanker " + getModel() + ", ready to pump gas.");
+		System.out.println(this.getClass().getSimpleName() + ": " + getModel() + ", ready to pump gas.");
 	}
 
 	@Override

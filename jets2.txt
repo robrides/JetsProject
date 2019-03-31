@@ -1,0 +1,26 @@
+Type: Combat, Model: B-2 Spirit, Speed: 630.0
+	Price= 737000000, Range= 6900, Pilot: Iceman
+Type: Combat, Model: B-1 Lancer, Speed: 830.0
+	Price= 400000000, Range= 5900, Pilot: Merlin
+Type: Combat, Model: F-22 Raptor, Speed: 1500.0
+	Price= 175000000, Range= 1840, Pilot: Cougar
+Type: Combat, Model: F-15 Eagle, Speed: 1200.0
+	Price= 120000000, Range= 1700, Pilot: Goose Jr.
+Type: Combat, Model: F-35 Lightning II, Speed: 1650.0
+	Price= 200000000, Range= 1950, Pilot: Iceman Jr.
+Type: Combat, Model: F-16 Fighting Falcon, Speed: 1320.0
+	Price= 25000000, Range= 2280, Pilot: Charlie Jr.
+Type: Combat, Model: A-10 Thunderbolt II, Speed: 439.0
+	Price= 45000000, Range= 2580, Pilot: Maverick Jr.
+Type: Transport, Model: C-5 Galaxy, Speed: 531.0
+	Price= 200000000, Range= 5500, Pilot: Viper Jr.
+Type: Transport, Model: Boeing C-17, Speed: 600.0
+	Price= 240000000, Range= 2785, Pilot: Cougar Jr.
+Type: Transport, Model: C-130 Hercules, Speed: 366.0
+	Price= 30000000, Range= 1270, Pilot: Goose III
+Type: Tanker, Model: Boeing KC-135, Speed: 530.0
+	Price= 60000000, Range= 1500, Pilot: Maverick III
+Type: Tanker, Model: KC-10 Extender, Speed: 619.0
+	Price= 120000000, Range= 4400, Pilot: Viper III
+Type: Tanker, Model: KC-46 Pegasus, Speed: 570.0
+	Price= 150000000, Range= 6385, Pilot: Cougar III

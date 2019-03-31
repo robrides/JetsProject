@@ -16,7 +16,7 @@ public class JetImpl extends Jet {
 	
 	@Override
 	public void fly() {
-		System.out.print("Type: " + getType() + ", Model: " + getModel() + "\nSpeed: " + getSpeed() + ", Range: "
+		System.out.print(this.getClass().getSimpleName() + ": " + ", Model: " + getModel() + "\nSpeed: " + getSpeed() + ", Range: "
 				+ getRange() + ", Flight Time: ");
 		System.out.printf("%.2f", ((getRange() / getSpeed())));
 		System.out.print(" hours.");

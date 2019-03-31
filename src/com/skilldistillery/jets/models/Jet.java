@@ -83,7 +83,7 @@ public abstract class Jet {
 
 	@Override
 	public String toString() {
-		return "Type: " + type + ", Model: " + model + ", Speed: " + speed + "\n\tPrice= " + price + ", Range= " + range + ", Pilot: " + pilot;
+		return this.getClass().getSimpleName() + ": " + "Model: " + model + ", Speed: " + speed + "\n\tPrice: " + price + ", Range: " + range + ", Pilot: " + pilot;
 	}
 
 	@Override
