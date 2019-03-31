@@ -19,7 +19,7 @@
 * How to use this project
 
   * Compile and run the project
-  * At startup, use the provide filenames to initialize the airfield and pilots
+  * At startup, use the provided filenames to initialize the airfield and pilots
   * The user is presented with a menu of options to select
   * Follow the online prompts to navigate through the application
 
