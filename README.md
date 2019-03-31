@@ -32,6 +32,7 @@
   * Inheritance
   * Encapsulation
   * Interfaces
+  * UML (see JetsUML.png)
   * Java Collections Framework
   * Java Optional
   * Java IO
