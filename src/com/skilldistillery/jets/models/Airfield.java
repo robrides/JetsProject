@@ -1,7 +1,10 @@
 package com.skilldistillery.jets.models;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
+import java.util.TreeSet;
 
 public class Airfield {
 
@@ -39,12 +42,22 @@ public class Airfield {
 	}
 
 	public void assignPilotsToAircraft() {
+
 		int rand = 0;
+		Set<Integer> randPilotsSet = new TreeSet<>();
 		
-		for (Jet jet : jets) {
+		// Place random int in a TreeSet the same size as the jets list.  TreeSet ensures no duplicates.
+		while (randPilotsSet.size() < jets.size()) {
 			rand = (int) (Math.random() * pilots.size()) + 1;
-			System.out.println("Random no. " + rand);
-			jet.setPilot(pilots.get(rand).getName());
+			randPilotsSet.add(rand);
+		}
+		
+		// Place the TreeSet into a List so that the get() method may be used in populating the pilot in the jets list
+		List<Integer> randPilotsIndexes = new ArrayList<>(randPilotsSet.size());
+		randPilotsIndexes.addAll(randPilotsSet);
+		
+		for (int i = 0; i < jets.size(); i++) {
+			jets.get(i).setPilot(pilots.get(randPilotsIndexes.get(i)).getName()); 
 		}
 	}
 	
