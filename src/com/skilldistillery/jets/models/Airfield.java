@@ -71,13 +71,15 @@ public class Airfield {
 
 	public void fastestJet() {
 
+		// Used Optional to determine the highest number in the ArrayList
 		Optional<Jet> fastest = jets.stream().max((j1, j2) -> (int) j1.getSpeed() - (int) j2.getSpeed());
 		System.out.println("The fastest jet is:\n" + fastest.get() + "\n");
 
 	}
 
 	public void longestRangeJet() {
-
+		
+		// Used Optional to determine the highest number in the ArrayList
 		Optional<Jet> longestRange = jets.stream().max((j1, j2) -> j1.getRange() - j2.getRange());
 		System.out.println("The longest range jet is:\n" + longestRange.get() + "\n");
 

@@ -45,5 +45,6 @@
 * Planning is time well spent
 * Reviewing and revising UML can help clean up code
 * Get better at recovering from Exceptions 
+* Push early, push often...Git can save your life!
 
 
