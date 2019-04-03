@@ -29,7 +29,7 @@
   * Inheritance
   * Encapsulation
   * Interfaces
-  * UML Diagram (../JetsProject/JetsUML.png)
+  * [UML Diagram](../master/JetsUML.png)
   * Java Collections Framework
   * Java Optional
   * Java IO
