@@ -18,10 +18,7 @@
   
 * How to use this project
 
-  * Compile and run the project
-  * At startup, use the provided filenames to initialize the airfield and pilots
-  * The user is presented with a menu of options to select
-  * Follow the online prompts to navigate through the application
+  * Compile and run the project. At startup, use the provided filenames to initialize the airfield and pilots. The user is presented with a menu of options to select.  Follow the online prompts to navigate through the application
 
 ### Concepts and Technologies Used
 
@@ -32,7 +29,7 @@
   * Inheritance
   * Encapsulation
   * Interfaces
-  * UML (see JetsUML.png)
+  * UML Diagram (../JetsProject/JetsUML.png)
   * Java Collections Framework
   * Java Optional
   * Java IO
@@ -42,10 +39,6 @@
   
 ### Lessons Learned
 
-* Don't second guess yourself
-* Planning is time well spent
-* Reviewing and revising UML can help clean up code
-* Get better at recovering from Exceptions 
-* Push early, push often...Git can save your life!
+* Don't second guess yourself! Planning is time well spent. Reviewing and revising UML can help clean up code. Get better at recovering from Exceptions. Push early, push often...Git can save your life!
 
 
